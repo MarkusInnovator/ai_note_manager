@@ -1,0 +1,18 @@
+# Use official Python image as base
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy project files
+COPY app/ ./app
+
+# Expose port (falls z.B. FastAPI/Flask genutzt wird)
+EXPOSE 8000
+
+# Start command (passe main.py ggf. an)
+CMD ["python", "app/main.py"]
